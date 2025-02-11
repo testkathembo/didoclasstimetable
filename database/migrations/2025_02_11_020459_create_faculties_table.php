@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('faculties', function (Blueprint $table) {
             $table->id();
+            $table->string('faculty_name');
+            $table->string('faculty_dean');
+            $table->string('faculty_location');
             $table->timestamps();
         });
     }

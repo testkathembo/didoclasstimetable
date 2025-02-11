@@ -15,10 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('first_name'); // User's first name
             $table->string('last_name'); // User's last name
-            $table->string('phone_number')->unique(); // User's phone number (must be unique)
+            $table->foreignId('faculty_id')->nullable()->constrained()->onDelete('cascade'); // Nullable for admins
             $table->string('email')->unique();
+            $table->string('phone_number')->unique();
+            $table->enum('role', ['student', 'lecturer', 'admin'])->default('student'); // Role system
+            $table->string('user_code')->unique(); // Auto-generated in Model
+            $table->string('password'); // Hashed password
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password'); // Will be hashed
             $table->rememberToken();
             $table->timestamps();
         });
